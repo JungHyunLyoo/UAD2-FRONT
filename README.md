@@ -58,7 +58,7 @@ API server git repository
                                         
 프로젝트 실행
 ----
-    mvn spring-boot:run -Djasypt.encryptor.password={jasypt.encryptor.password} -Dspring.profiles.active=local
+    npm~~~
  
 readme 마크다운 사용법
 ----
