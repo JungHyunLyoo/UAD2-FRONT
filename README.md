@@ -63,4 +63,3 @@ API server git repository
 readme 마크다운 사용법
 ----
 - https://gist.github.com/ihoneymon/652be052a0727ad59601
->>>>>>> 89c70451cbf2c6741d0b387ca54bb56f7e695bb8
