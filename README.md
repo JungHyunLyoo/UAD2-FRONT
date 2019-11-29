@@ -36,6 +36,8 @@ API server git repository
 - vscode
 #### react
 - ~~
+#### project path
+- C:\UAD2\UAD2-
 #### 협업도구
 - notion
     - repository : https://www.notion.so/0dcf5ff7bda446b68f3bfacd9cc47880?v=e624d0e95ace45b6b29805434e2a1be7
