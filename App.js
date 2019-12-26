@@ -11,6 +11,7 @@ import {
 import Home from './source/Home';
 import Dues from './source/Dues';
 import {createAppContainer} from 'react-navigation';
+import Attend from './source/Attend';
 
 const MyDrawerNavigator = createDrawerNavigator(
   {
@@ -18,6 +19,12 @@ const MyDrawerNavigator = createDrawerNavigator(
       screen: Home,
       navigationOptions: () => ({
         title: '홈',
+      }),
+    },
+    Attend: {
+      screen: Attend,
+      navigationOptions: () => ({
+        title: '참가',
       }),
     },
     Dues: {
