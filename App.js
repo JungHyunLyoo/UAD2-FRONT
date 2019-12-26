@@ -8,10 +8,10 @@ import {
   StatusBar,
 } from 'react-native';
 
-import Home from './source/Home';
-import Dues from './source/Dues';
+import Home from './source/scene/Home';
+import Dues from './source/scene/Dues';
 import {createAppContainer} from 'react-navigation';
-import Attend from './source/Attend';
+import Attend from './source/scene/Attend';
 
 const MyDrawerNavigator = createDrawerNavigator(
   {
