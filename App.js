@@ -35,7 +35,7 @@ const MyDrawerNavigator = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Attend',
   },
 );
 
