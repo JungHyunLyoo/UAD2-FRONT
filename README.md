@@ -60,7 +60,7 @@ API server git repository
                                         
 프로젝트 실행
 ----
-    npm~~~
+    react-native run-android
  
 readme 마크다운 사용법
 ----
