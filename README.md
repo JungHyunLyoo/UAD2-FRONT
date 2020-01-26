@@ -6,8 +6,8 @@ UAD's second project(UAD2-FRONT)
 ----
 - UAD 프로젝트의 두 번째 버전(FRONT)
  
-- Php Laravel로 개발된 첫 번째 버전을 Java SpringBoot로 개편. 
-<br>Front는 React로 동일
+- BACK : Php Laravel로 개발된 첫 번째 버전을 Java SpringBoot로 개편. 
+<br>Front : React->React-Native로 개편.
     
 - UAD 첫 번째 버전    
     - 저장소
@@ -28,16 +28,17 @@ API server git repository
 - pm : 11유정현
 - infra : 11김종엽, 11박준호 
 - back(Java SpringBoot) : 11김종엽, 11조형근, 11박준호
-- front(React) : 13진여준
+- front(React-native) : 13진여준
 
 개발 환경
 ----
 #### ide
 - vscode
-#### react
+#### React-Native
 - ~~
 #### project path
-- C:\UAD2\UAD2-
+- WINDOW -> C:\UAD2\UAD2-
+- MAC -> ????
 #### 협업도구
 - notion
     - repository : https://www.notion.so/0dcf5ff7bda446b68f3bfacd9cc47880?v=e624d0e95ace45b6b29805434e2a1be7
@@ -61,6 +62,11 @@ API server git repository
 프로젝트 실행
 ----
     react-native run-android
+    
+프로젝트 빌드
+----
+    react-native ???
+    
  
 readme 마크다운 사용법
 ----
