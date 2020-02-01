@@ -1,9 +1,10 @@
 import {Calendar} from 'react-native-calendars';
 
-import React from 'react';
-import {Text, View} from 'react-native';
-import {SafeAreaView} from 'react-navigation';
+import React, {useState} from 'react';
+import {Text, View, SafeAreaView, StyleSheet} from 'react-native';
 import {LocaleConfig} from 'react-native-calendars';
+import TimeList from '../component/scene/attend/TimeList';
+import Utility from '../Utility';
 
 LocaleConfig.locales['ko'] = {
   monthNames: [
@@ -47,12 +48,43 @@ LocaleConfig.locales['ko'] = {
   today: '오늘',
 };
 LocaleConfig.defaultLocale = 'ko';
+
+const datas = {};
 const Attend = () => {
+  const [selectDate, setSelectDate] = useState(false);
+
+  const markSelectDate = {};
+  markSelectDate[selectDate] = {
+    selected: true,
+    // marked: true,
+    selectedColor: Utility.color.primary,
+  };
+
   return (
-    <SafeAreaView>
-      <Calendar />
+    <SafeAreaView style={styles.container}>
+      <Calendar
+        markedDates={markSelectDate}
+        onDayPress={date => {
+          setSelectDate(date.dateString);
+        }}
+      />
+      <View style={styles.attendList}>
+        {selectDate ? <TimeList /> : <Text>날짜를 선택해주세요</Text>}
+      </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    backgroundColor: 'white',
+  },
+  attendList: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default Attend;
