@@ -7,8 +7,31 @@ import {
   TextInput,
 } from 'react-native';
 import Utility from '../../../Utility';
+import axios from 'axios';
+import CookieManager from 'react-native-cookies';
 
 const SignIn = ({navigation}) => {
+  const login = () => { 
+    axios({
+      method: 'POST',
+      url: 'http://pjhdev.com:8087/api/member/login',
+      headers: { 
+        'content-type': 'application/json' 
+      },
+      data : JSON.stringify({
+        id : "testUser",
+        pwd : "testUser",
+        isAutoLogin : false
+      })
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -26,7 +49,7 @@ const SignIn = ({navigation}) => {
           secureTextEntry={true}
         />
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={login}>
         <Text style={styles.buttonText}>로그인</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={()=>navigation.push('SignUp')}>
