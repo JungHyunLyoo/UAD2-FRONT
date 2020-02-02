@@ -51,18 +51,20 @@ const SignIn = ({navigation}) => {
   const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
-      <Image style={{height:'40%',width:'40%'}}
+      <Image style={{height:'60%',width:'60%',marginTop:-100,marginBottom:-50}}
           source={require('../../../../resource/uad.png')}/>
       <View style={styles.textFieldContainer}>
         <TextInput
           style={styles.textField}
           onChangeText={text => setId(text)}
+          placeholder="아이디"
           value={id}
         />
         <TextInput
           style={styles.textField}
           onChangeText={text => setPassword(text)}
           value={password}
+          placeholder="비밀번호"
           secureTextEntry={true}
         />
       </View>
