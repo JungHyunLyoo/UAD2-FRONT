@@ -5,11 +5,30 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Button
 } from 'react-native';
 import Utility from '../../../Utility';
 import {OutlinedTextField} from 'react-native-material-textfield';
+import ImagePicker from "react-native-image-picker";
 
+import axios from 'axios';
 const SignUp = ({navigation}) => {
+  const pickImageHandler = () => {
+    ImagePicker.showImagePicker({title: "Pick an Image", maxWidth: 800, maxHeight: 600}, res => {
+      if (res.didCancel) {
+        console.log("User cancelled!");
+      } else if (res.error) {
+        console.log("Error", res.error);
+      } else {
+        console.log(res.uri);
+      }
+    });
+  }
+
+
+  const signUpExec = () =>{
+  }
+
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const inputRef = useRef();
@@ -53,16 +72,22 @@ const SignUp = ({navigation}) => {
           ref={inputRef}
           containerStyle={styles.textField}
         />
+        <OutlinedTextField
+          label="프로필 이미지"
+          keyboardType="phone-pad"
+          ref={inputRef}
+          containerStyle={styles.textField}
+        />
+        <Button title="Pick Image" onPress={pickImageHandler} />
       </View>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.goBack()}>
+        onPress={signUpExec}>
         <Text style={styles.buttonText}>회원가입</Text>
       </TouchableOpacity>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
