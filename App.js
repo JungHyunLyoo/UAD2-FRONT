@@ -40,11 +40,21 @@ const HomeNavigator = createStackNavigator({
   },
 });
 
-const AttenNavigator = createStackNavigator({
+const AttendNavigator = createStackNavigator({
   Attend: {
     screen: Attend,
     navigationOptions: ({navigation}) => ({
       title: '참가',
+      headerRight: () => headerRight(navigation),
+    }),
+  },
+});
+
+const DuesNavigator = createStackNavigator({
+  Dues: {
+    screen: Dues,
+    navigationOptions: ({navigation}) => ({
+      title: '회비',
       headerRight: () => headerRight(navigation),
     }),
   },
@@ -63,15 +73,16 @@ const MyDrawerNavigator = createDrawerNavigator(
       navigationOptions: () => ({
         title: '홈',
       }),
+
     },
     Attend: {
-      screen: AttenNavigator,
+      screen: AttendNavigator,
       navigationOptions: () => ({
         title: '참가',
       }),
     },
     Dues: {
-      screen: Dues,
+      screen: DuesNavigator,
       navigationOptions: () => ({
         title: '회비',
       }),
@@ -95,10 +106,10 @@ const SignNavigator = createStackNavigator({
     navigationOptions: () => ({
       title: '회원가입',
     }),
-  },
+  }
 });
 
-const appNavigator = createSwitchNavigator({
+const AppNavigator = createSwitchNavigator({
   Sign: {
     screen: SignNavigator,
   },
@@ -107,6 +118,6 @@ const appNavigator = createSwitchNavigator({
   },
 });
 
-const App = createAppContainer(appNavigator);
+const App = createAppContainer(AppNavigator);
 
 export default App;
