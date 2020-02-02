@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {
   Text,
   View,
+  Image,
   StyleSheet,
   TouchableOpacity,
   TextInput,
@@ -12,6 +13,10 @@ import CookieManager from 'react-native-cookies';
 
 const SignIn = ({navigation}) => {
   const login = () => { 
+
+    //기존 쿠키 삭제
+    CookieManager.clearAll();
+
     axios({
       method: 'POST',
       url: 'http://pjhdev.com:8087/api/member/login',
@@ -19,13 +24,23 @@ const SignIn = ({navigation}) => {
         'content-type': 'application/json' 
       },
       data : JSON.stringify({
-        id : "testUser",
-        pwd : "testUser",
+        id : id,
+        pwd : password,
         isAutoLogin : false
       })
     })
     .then(function (response) {
-      console.log(response);
+
+      //쿠키 내 이름 데이터 get
+      let name;
+      CookieManager.get('pjhdev.com')
+      .then((res) => {
+        name = decodeURIComponent(res["name"]);
+        navigation.navigate('Home', {
+          name
+        });
+      });
+      
     })
     .catch(function (error) {
       console.log(error);
@@ -36,6 +51,8 @@ const SignIn = ({navigation}) => {
   const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
+      <Image style={{height:'40%',width:'40%'}}
+          source={require('../../../../resource/uad.png')}/>
       <View style={styles.textFieldContainer}>
         <TextInput
           style={styles.textField}

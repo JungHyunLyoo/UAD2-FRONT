@@ -2,12 +2,13 @@ import React from 'react';
 import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
 import Welcome from '../component/scene/home/Welcome';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import CookieManager from 'react-native-cookies';
 
-const Home = () => {
+const Home = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Welcome name={'진여준'} />
+        <Welcome name={props.navigation.state.params.name} />
       </View>
     </SafeAreaView>
   );
