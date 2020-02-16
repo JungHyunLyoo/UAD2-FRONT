@@ -27,6 +27,37 @@ const SignUp = ({navigation}) => {
 
 
   const signUpExec = () =>{
+
+    let formData = new FormData();
+    formData.append('id','idid');
+    formData.append('pwd','pwdpwd');
+    formData.append('name','namename');
+    formData.append('birthDay','20200101');
+    formData.append('studentId','11');
+    formData.append('isWorker','1');
+    formData.append('phoneNumber','01012341234');
+    formData.append('profileImg',{
+      uri: 'file:///storage/emulated/0/Android/data/com.uad2/files/Pictures/image-1208fad9-9e98-464f-a450-403ee4eaaaac.jpg',
+      type: 'image/jpeg',
+      name: 'imgimg'
+    });
+    axios({
+      method: 'POST',
+      url: 'http://pjhdev.com:8087/api/member',
+      headers: { 
+        'content-type': 'multipart/form-data' 
+      },
+      data : formData
+    })
+    .then(function (response) {
+      console.log(response);
+      // navigation.goBack()
+    })
+    .catch(error=>{
+      let errorObject=JSON.parse(JSON.stringify(error));
+      console.log(errorObject);
+      //dispatch(authError(errorObject.response.data.error));
+      });
   }
 
   const [id, setId] = useState('');

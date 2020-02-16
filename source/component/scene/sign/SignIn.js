@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Image,
+  CheckBox,
   StyleSheet,
   TouchableOpacity,
   TextInput,
@@ -10,8 +11,47 @@ import {
 import Utility from '../../../Utility';
 import axios from 'axios';
 import CookieManager from 'react-native-cookies';
+import SplashScreen from 'react-native-splash-screen';
 
 const SignIn = ({navigation}) => {
+  //쿠키 내 로그인 데이터 확인
+  CookieManager.get('pjhdev.com')
+  .then((res) => {
+    
+    //1회 로그인 시 쿠키 maxAge가 -1로 설정되어 있으나 
+    //앱을 종료해도 남아있음
+    const isEmptyLoginCookie = (Object.keys(res).length == 0);
+
+    if(isEmptyLoginCookie || !res["is_auto_login"]){
+      SplashScreen.hide();
+    }
+    else{
+      axios({
+        method: 'GET',
+        url: 'http://pjhdev.com:8087/api/member/checkAutoLogin'
+      })
+      .then(function (response) {
+        const isAutoLogin = response.data.isAutoLogin;
+
+        console.log("isAutoLogin :: " + isAutoLogin);
+
+        if(isAutoLogin){
+          const name = res["name"];
+          navigation.navigate('Home', {
+            name
+          });
+          SplashScreen.hide();
+        }
+        else{
+          SplashScreen.hide();
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  });
+
   const login = () => { 
 
     //기존 쿠키 삭제
@@ -68,6 +108,8 @@ const SignIn = ({navigation}) => {
           secureTextEntry={true}
         />
       </View>
+      <CheckBox/>
+      <Text>test</Text>
       <TouchableOpacity style={styles.button} onPress={login}>
         <Text style={styles.buttonText}>로그인</Text>
       </TouchableOpacity>
