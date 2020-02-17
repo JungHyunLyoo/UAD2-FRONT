@@ -3,7 +3,6 @@ import {
   Text,
   View,
   Image,
-  CheckBox,
   StyleSheet,
   TouchableOpacity,
   TextInput,
@@ -12,8 +11,11 @@ import Utility from '../../../Utility';
 import axios from 'axios';
 import CookieManager from 'react-native-cookies';
 import SplashScreen from 'react-native-splash-screen';
+import ConstantValue from '../../../constant/ConstantValue';
+import { CheckBox } from 'react-native-elements';
 
 const SignIn = ({navigation}) => {
+
   //쿠키 내 로그인 데이터 확인
   CookieManager.get('pjhdev.com')
   .then((res) => {
@@ -28,7 +30,7 @@ const SignIn = ({navigation}) => {
     else{
       axios({
         method: 'GET',
-        url: 'http://pjhdev.com:8087/api/member/checkAutoLogin'
+        url: ConstantValue.serverDomain + '/api/member/checkAutoLogin'
       })
       .then(function (response) {
         const isAutoLogin = response.data.isAutoLogin;
@@ -52,6 +54,11 @@ const SignIn = ({navigation}) => {
     }
   });
 
+
+  
+  const findPasswd = () => {
+    console.log('findPasswd');
+  }
   const login = () => { 
 
     //기존 쿠키 삭제
@@ -59,14 +66,14 @@ const SignIn = ({navigation}) => {
 
     axios({
       method: 'POST',
-      url: 'http://pjhdev.com:8087/api/member/login',
+      url: ConstantValue.serverDomain + '/api/member/login',
       headers: { 
         'content-type': 'application/json' 
       },
       data : JSON.stringify({
         id : id,
         pwd : password,
-        isAutoLogin : false
+        isAutoLogin : isAutoLogin
       })
     })
     .then(function (response) {
@@ -89,6 +96,7 @@ const SignIn = ({navigation}) => {
 
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const [isAutoLogin, setIsAutoLogin] = useState(false);
   return (
     <View style={styles.container}>
       <Image style={{height:'60%',width:'60%',marginTop:-100,marginBottom:-50}}
@@ -108,14 +116,21 @@ const SignIn = ({navigation}) => {
           secureTextEntry={true}
         />
       </View>
-      <CheckBox/>
-      <Text>test</Text>
+
+      <View style={styles.signOptionContainer}>
+        <CheckBox style={styles.autoLoginCheckBox}
+                  title='자동 로그인'
+                  checked={isAutoLogin}
+                  onPress={()=>setIsAutoLogin(!isAutoLogin)}
+                  />
+        <Text onPress={()=>navigation.push('SignUp')}>회원가입</Text>
+        <Text>|</Text>
+        <Text onPress={findPasswd}>비밀번호 찾기</Text>
+      </View>
+      
       <TouchableOpacity style={styles.button} onPress={login}>
         <Text style={styles.buttonText}>로그인</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={()=>navigation.push('SignUp')}>
-        <Text style={styles.buttonText}>회원가입</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>    
     </View>
   );
 };
@@ -141,6 +156,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     marginBottom: 10,
+  },
+  signOptionContainer: {
+    width: '80%',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent: 'space-around',
   },
   button: {
     marginTop: 10,

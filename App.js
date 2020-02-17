@@ -98,13 +98,13 @@ const SignNavigator = createStackNavigator({
   SignIn: {
     screen: SignIn,
     navigationOptions: () => ({
-      title: 'UAD 2.0',
+      headerShown:false
     }),
   },
   SignUp: {
     screen: SignUp,
     navigationOptions: () => ({
-      title: '회원가입',
+      headerShown:false
     }),
   }
 });
