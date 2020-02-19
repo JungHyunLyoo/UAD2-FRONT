@@ -123,9 +123,9 @@ const SignIn = ({navigation}) => {
                   checked={isAutoLogin}
                   onPress={()=>setIsAutoLogin(!isAutoLogin)}
                   />
-        <Text onPress={()=>navigation.push('SignUp')}>회원가입</Text>
-        <Text>|</Text>
-        <Text onPress={findPasswd}>비밀번호 찾기</Text>
+        <Text style={styles.signOptionText} onPress={()=>navigation.push('SignUp')}>회원가입</Text>
+        <Text style={styles.signOptionText}>|</Text>
+        <Text style={styles.signOptionText} onPress={findPasswd}>비밀번호 찾기</Text>
       </View>
       
       <TouchableOpacity style={styles.button} onPress={login}>
@@ -162,6 +162,9 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
     justifyContent: 'space-around',
+  },
+  signOptionText: {
+    fontSize: 12
   },
   button: {
     marginTop: 10,
